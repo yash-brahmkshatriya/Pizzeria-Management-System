@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <!DOCTYPE html>
+<html>
+    <head>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <title>Order</title>
+    <style>
+        body, html {
+            height: 100%;
+                }
+            .bg {
+            /* The image used */
+           background-image: url("https://i.ibb.co/7NRHMtf/LOGIN-bg.jpg");
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+        .log
+        {
+            color: aliceblue;
+            font-family: Lucida Console Regular;
+            font-size:18px ;
+            
+        }
+        .logoutbtn {
+            position: absolute;
+            top: 2%;
+            right: 2%;
+        }
+        .log2
+        {
+            color: aliceblue;
+            font-family: monospace;
+            font-size:25px ;
+            
+        }
+        .log3
+        {
+            color: aliceblue;
+            font-family: Lucida Console Regular;
+            font-size:18px ;
+            
+        }
+        .h1
+        {
+            color: white;
+            font-family: 'Kaushan Script', cursive;
+            font-size: 60px;
+        }
+        .greeting{
+            position: relative;
+            top:2%;
+            left:1%;
+            color:salmon;
+            font-family: Lucida Console Regular;
+            font-size:18px ;
+        }
+        input[type=text]
+            {
+                width: 30%;
+                border: none;
+                background: transparent;
+                border-bottom: 2px solid white;
+                border-bottom-color: lightgreen;
+                color:lightcoral;
+                font-family:Gabriola Regular;
+                font-size: 20px;
+                border-bottom-style:ridge;
+                
+                
+            }
+        input[type=number]
+            {
+                width: 7%;
+                border: none;
+                background: transparent;
+                border-bottom: 2px solid white;
+                border-bottom-color: lightgreen;
+                color:lightcoral;
+                font-family:Arial;
+                font-size: 20px;
+                border-bottom-style:ridge;
+            }
+        
+        input[type=password]
+            {
+                width: 30%;
+                border: none;
+                background: transparent;
+                border-bottom: 2px solid white;
+                border-bottom-color: lightgreen;
+                color:lightcoral;
+                font-family:monospace;
+                font-size: 18px;
+                border-bottom-style:ridge;
+            }
+    </style>
+        <script>
+            function genValues(){
+                var result = "";
+                var allzero = true;
+                var neg = false;
+                <% data["menu"].forEach(function(item,index){ %>
+                    var cur_id = <%= item.item_id %>;
+                    var ele = document.getElementById(cur_id);
+                    // var ans = ele.options[ele.selectedIndex].value;
+                    var ans = ele.value;
+                    if(ans<0){neg=true;}
+                    if(ans > 0){
+                        allzero = false;
+                        result+= cur_id+"-"+ans+",";
+                    } 
+                    console.log(ans);
+                <% }); %>
+                document.getElementById("myresult").value = result;
+                if(neg){alert("Negative values entered!");return false;}
+                if(allzero){alert("Order is Empty!");return false;}
+            }
+        </script>
+    </head>
+    <body>
+        <div class="bg">
+            <div class="greeting">
+                Hello,
+                <%= data["user"].fname %>
+            </div>
+            <br><br>
+            
+        <p class="h1 container">Order here</p>
+        <div class="container">
+            <form action="/customer/order" method="POST" class="form-group">
+                <% data["menu"].forEach(function(item,index){ %>
+                    &nbsp;&nbsp;&nbsp;
+                    <label class="log3" for="<%= item.item_id%>"><%= item.name %></label>
+                    &nbsp;
+                    <input type="number" min="0" id="<%= item.item_id%>" name="<%= item.item_id%>">
+                    <br>
+                <% }); %>
+                
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-success" type="submit" onclick="return genValues()">Place Order</button>
+                <input type="hidden" name="myresult" id="myresult">
+            </form>
+        </div>
+        <div>
+            <form action="/customer/logout" method="POST" class="logoutbtn">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </div>
+    </body>
+</html>

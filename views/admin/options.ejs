@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <title>Admin Login</title>
+    <style>
+        body, html {
+            height: 100%;
+                }
+            .bg {
+            /* The image used */
+           background-image: url("https://i.ibb.co/MSBLTCc/LOGIN-admin-bg.jpg");
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+        .log
+        {
+            color:sienna;
+            font-family: Gabriola Regular;
+            font-size:27px ;
+            
+        }
+        .logoutbtn {
+            position: absolute;
+            top: 2%;
+            right: 2%;
+        }
+        .h1
+        {
+            color: teal;
+            font-family: 'Kaushan Script', cursive;
+
+            font-size: 55px;
+        }
+        
+        input[type=email]
+            {
+                width: 30%;
+                border: none;
+                background: transparent;
+                border-bottom: 2px solid white;
+                border-bottom-color: lightgreen;
+                color:lightcoral;
+                font-family:Gabriola Regular;
+                font-size: 20px;
+                border-bottom-style:ridge;
+            }
+        
+        input[type=password]
+            {
+                width: 30%;
+                border: none;
+                background: transparent;
+                border-bottom: 2px solid white;
+                border-bottom-color: lightgreen;
+                color:lightcoral;
+                font-family:monospace;
+                font-size: 18px;
+                border-bottom-style:ridge;
+            }
+        .greeting{
+            position: absolute;
+            top:2%;
+            left:1%;
+            color:teal;
+            font-family: Lucida Console Regular;
+            font-size:18px ;
+        }
+        
+    </style>
+  
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Options</title>
+</head>
+<body >
+    <div class="bg">  
+        <div class="greeting">
+        Hello, <%= data["admin_details"].name %>
+        </div>
+    <div class="container">
+        <div>
+            <br>
+            <br><br>
+            <h1 class="h1">&nbsp;&nbsp;Admin Options</h1>
+        </div>
+        <div>
+            <p class="log">Manage Admins:</p>
+            &emsp;&emsp;
+            <a class="btn btn-secondary btn-lg" href="/admin/options/addAdmin">Add Admin</a>
+            &emsp;&emsp;
+            <a class="btn btn-secondary btn-lg"href="/admin/options/removeAdmin">Remove Admin</a>
+            <br><br>
+            <p class="log">Manage Items:</p>
+            &emsp;&emsp;
+            <a class="btn btn-danger btn-lg" href="/admin/options/addItem">Add Item</a>
+            &emsp;&emsp;&emsp;
+            <a class="btn btn-danger btn-lg"href="/admin/options/removeItem">Remove Item</a>
+            &emsp;&emsp;
+            <a class="btn btn-danger btn-lg"href="/admin/options/updateItemPrice">Update Item Price</a>
+            <br><br>
+            <p class="log">Statistics:</p>
+            &emsp;&emsp;
+            <a class="btn btn-secondary btn-lg" href="/admin/options/itemstats">Item Stats</a>
+        </div>
+    </div>
+    <div>
+        <form action="/admin/logout" method="POST" class="logoutbtn">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

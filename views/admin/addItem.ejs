@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+                }
+            .bg {
+            /* The image used */
+           background-image: url("https://i.ibb.co/MSBLTCc/LOGIN-admin-bg.jpg");
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+        .log
+        {
+            color: aliceblue;
+            font-family: Gabriola Regular;
+            font-size:22px ;
+        }
+        .logoutbtn {
+            position: absolute;
+            top: 2%;
+            right: 2%;
+        }
+        .h1
+        {
+            color: teal;
+            font-family: 'Kaushan Script', cursive;
+
+            font-size: 55px;
+        }
+        input[type=text]
+            {
+                width: 30%;
+                border: none;
+                background: transparent;
+                border-bottom: 2px solid white;
+                border-bottom-color: black;
+                color:lightcoral;
+                font-family:Gabriola Regular;
+                font-size: 20px;
+                border-bottom-style:ridge;
+                
+                
+            }
+        .greeting{
+            position: absolute;
+            top:2%;
+            left:1%;
+            color:teal;
+            font-family: Lucida Console Regular;
+            font-size:18px ;
+        }
+        
+        input[type=email]
+            {
+                width: 30%;
+                border: none;
+                background: transparent;
+                border-bottom: 2px solid white;
+                border-bottom-color: black;
+                color:lightcoral;
+                font-family:Gabriola Regular;
+                font-size: 20px;
+                border-bottom-style:ridge;
+            }
+        input[type=number]
+            {
+                width: 30%;
+                border: none;
+                background: transparent;
+                border-bottom: 2px solid white;
+                border-bottom-color: black;
+                color:lightcoral;
+                font-family:monospace;
+                font-size: 18px;
+                border-bottom-style:ridge;
+            }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+</head>
+<body class="bg">
+   <div class="greeting">
+            Hello, 
+            <%= data["admin_details"].name %>
+    </div>
+       <div class="container">
+    <div>
+        <br><br><br><br>
+        <h1 class="h1">Add Item</h1>
+    </div>
+    <div>
+        <form action="/admin/options/addItem" method="POST">
+            <label for="name">Name</label><br>
+            <input type="text" name="name" id="name" required><br>
+            <label for="price">Price</label><br>
+            <input type="number" min="0" name="price" id="price"><br>
+            <label for="category">Category</label><br>
+            <input type="text" name="category" id="category" required><br><br>
+            <button class="btn btn-dark" type="submit">Add Item</button><br>
+        </form>
+           </div>
+        <div>
+            <form action="/admin/logout" method="POST" class="logoutbtn">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

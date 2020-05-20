@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <!DOCTYPE html>
+<html>
+    <head>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <title>Bill</title>
+    <style>
+        body, html {
+            height: 100%;
+                }
+            .bg {
+            /* The image used */
+           background-image: url("https://i.ibb.co/7NRHMtf/LOGIN-bg.jpg");
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+                   
+            }
+        .greeting{
+            color:salmon;
+            font-family: Lucida Console Regular;
+            font-size:18px ;
+        }
+        .logoutbtn {
+            position: absolute;
+            top: 2%;
+            right: 2%;
+        }
+        .cancelbtn {
+            position: absolute;
+            bottom:10%;
+            left:40%;
+        }
+        .placebtn {
+            position: absolute;
+            bottom:10%;
+            left:50%;
+        }
+        .log
+        {
+            color: aliceblue;
+            font-family: Lucida Console Regular;
+            font-size:18px ;
+        }
+        .log2
+        {
+            color: aliceblue;
+            font-family: monospace;
+            font-size:25px ;
+            
+        }
+        .log3
+        {
+            color: aliceblue;
+            font-family: Lucida Console Regular;
+            font-size:18px ;
+        }
+        .h1
+        {
+            color: #4fd5a8;
+            font-family: 'Kaushan Script', cursive;;
+            font-size: 60px;
+        }
+        input[type=text]
+        {
+            width: 30%;
+            border: none;
+            background: transparent;
+            border-bottom: 2px solid white;
+            border-bottom-color: lightgreen;
+            color:lightcoral;
+            font-family:Gabriola Regular;
+            font-size: 20px;
+            border-bottom-style:ridge;
+        }
+        .tb{
+            width:50%;
+            color:white;
+        }
+        .hover
+        {
+            color:lightgreen;
+        }
+        .totamt {
+            color:white;
+            font-family: Gabriola Regular;
+            
+        }
+    </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script>
+            function genValues(){
+                var ele = document.getElementById("pcashier");
+                document.getElementById("paidto").value = ele.options[ele.selectedIndex].value;;
+            }
+        </script>
+    </head>
+    <body>
+        <div class="bg">
+            <br>
+            <div class="greeting">
+            &nbsp;Hello,
+            <%= data["user"].fname %>
+        </div>
+            <br>
+            <br>
+    <h1 class="h1 container">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bill</h1>
+        
+        
+        <table class="table   table-striped table-borderless tb">
+        <tr>
+            <th>Name</th><th>Price</th><th>Qty</th><th>Amount</th>
+        </tr>
+        <% data["order"].forEach(function(item,index){ %>
+            <tr>
+                <td><%= item.name %></td>
+                <td><%= item.price %></td>
+                <td><%= item.qty %></td>
+                <td><%= item.amt %></td>
+            </tr>
+        <% }); %>
+        </table>
+        <br>
+        <div>
+            <h1 class="totamt">Total Amt= <%= data["order"].totamt %></h1><br>
+        </div>
+        <div>
+            <form action="/customer/bill" method="post" onsubmit="return genValues()">
+                <label class="log2" for="cashier">Paying Bill to:</label>
+                <select class="btn btn-secondary" name="pcashier" id="pcashier">
+                    <% data["cashier"].forEach(function(item,index){ %>
+                        <option value="<%= item.cid %>"> <%= item.name %></option>
+                    <% }); %>
+                </select>
+                <br>
+                <div class="placebtn">
+                    <button type="submit" class="btn btn-success">Place Order</button>
+                </div>
+                <input type="hidden" name="paidto" id="paidto">
+            </form>
+            <div class="cancelbtn">
+                <form action="/customer/logout" method="POST">
+                    <button type="submit" class="btn btn-outline-danger">Cancel Order</button>
+                </form>
+            </div>
+        </div>
+        <div>
+            <form action="/customer/logout" method="POST" class="logoutbtn">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+            </div>
+    </body>
+</html>

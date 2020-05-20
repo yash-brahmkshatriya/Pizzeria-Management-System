@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <title>Item Stats</title>
+    <style>
+        body, html {
+            height: 100%;
+                }
+            .bg {
+            background-image: url("https://i.ibb.co/MSBLTCc/LOGIN-admin-bg.jpg");
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .logoutbtn {
+            position: absolute;
+            top: 2%;
+            right: 2%;
+        }
+        .h1
+        {
+            color: teal;
+            font-family: 'Kaushan Script', cursive;
+
+            font-size: 55px;
+        }
+        .tableheading {
+            color: brown;
+            font-size: 35px;
+            caption-side: top;
+            text-align: center;
+            font-family: Arial;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="bg">
+            <div><br>
+                <h1 class="h1">&emsp;Item Statistics</h1>
+            </div>
+            <div class="container pt-3">
+                <table class="table table-striped table-borderless tb" style="width: 50%;">
+                <caption class="tableheading" >Ordered Items History</caption>
+                <thead>
+                    <tr class="d-flex">
+                        <th class="col-2">Sr. No.</th>
+                        <th class="col-6">Name</th>
+                        <th class="col-3">Total Qty. ordered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data["stats"].forEach(function(item,index){ %>
+                        <tr class="d-flex">
+                            <td class="col-2"><%= item.srno %></td>
+                            <td class="col-6"><%= item.name %></td>
+                            <td class="col-3"><%= item.totqty %></td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+                </table>
+            </div>
+            <div>
+                <form action="/admin/logout" method="POST" class="logoutbtn">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

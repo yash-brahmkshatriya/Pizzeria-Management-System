@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap" rel="stylesheet">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+  
+    <style>
+        body, html {
+            height: 100%;
+                }
+            .bg {
+            /* The image used */
+           background-image: url("https://i.ibb.co/MSBLTCc/LOGIN-admin-bg.jpg");
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+        .log
+        {
+            color: black;
+            font-size:21px ;
+            
+        }
+        .h1
+        {
+            color: teal;
+         font-family: 'Kaushan Script', cursive;
+
+
+            font-size: 55px;
+        }
+        .logoutbtn {
+            position: absolute;
+            top: 2%;
+            right: 2%;
+        }
+        .greeting{
+            position: absolute;
+            top:2%;
+            left:1%;
+            color:teal;
+            font-family: Lucida Console Regular;
+            font-size:18px ;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Item</title>
+    <script>
+        function genValues(){
+            var ele = document.getElementById("selitem");
+            document.getElementById("item_id").value = ele.options[ele.selectedIndex].value;;
+        }
+    </script>
+</head>
+<body class="bg">
+    <div class="greeting">
+            Hello,        
+            <%= data["admin_details"].name %>
+    </div>
+    <div class="container">
+        <br><br><br>
+        <h1 class="h1">Remove Item</h1>
+    </div>
+    <div class="container">
+        <form action="/admin/options/removeItem" method="POST" >
+            <label for="item" class="log">Select Item to Remove:</label>
+            <select name="selitem" id="selitem">
+                <% data["menu"].forEach(function(item,index){ %>
+                    <option value="<%= item.item_id %>"> <%= item.name %></option>
+                <% }); %>
+            </select>
+            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button class="btn btn-dark btn-sm" type="submit" onclick="return genValues()">Remove Item</button>
+            <input type="hidden" name="item_id" id="item_id">
+        </form>
+    </div>
+    <form action="/admin/logout" method="POST" class="logoutbtn">
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+</body>
+</html>
